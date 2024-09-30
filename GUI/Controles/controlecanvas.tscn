@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://6r0hwy3ijx5f"]
+
+[ext_resource type="Script" path="res://GUI/Controles/controletoque.gd" id="1_6ks27"]
+[ext_resource type="Texture2D" uid="uid://c7cn2313mxbrs" path="res://GUI/Controles/controleesquerda.png" id="1_bf6yd"]
+[ext_resource type="Texture2D" uid="uid://d1nu6jmo36gj0" path="res://GUI/Controles/pressesquerda.png" id="2_slaio"]
+[ext_resource type="Texture2D" uid="uid://duqqcf0320jak" path="res://GUI/Controles/controledireita.png" id="3_ia54u"]
+[ext_resource type="Texture2D" uid="uid://bwm50ffuwcjo1" path="res://GUI/Controles/pressdireita.png" id="4_tjl3u"]
+[ext_resource type="Texture2D" uid="uid://b8xafc84pfoqm" path="res://GUI/Controles/controlepulo.png" id="5_qwhvk"]
+[ext_resource type="Texture2D" uid="uid://co4ji2hklrgnk" path="res://GUI/Controles/presspulo.png" id="6_0dx5n"]
+
+[node name="ControleTouch" type="CanvasLayer"]
+script = ExtResource("1_6ks27")
+
+[node name="Descer" type="TouchScreenButton" parent="."]
+position = Vector2(148, 621)
+rotation = -1.5708
+scale = Vector2(1.3, 1.3)
+texture_normal = ExtResource("1_bf6yd")
+texture_pressed = ExtResource("2_slaio")
+action = "ui_down"
+
+[node name="Esquerda" type="TouchScreenButton" parent="."]
+position = Vector2(35, 445)
+scale = Vector2(1.3, 1.3)
+texture_normal = ExtResource("1_bf6yd")
+texture_pressed = ExtResource("2_slaio")
+action = "ui_left"
+
+[node name="Direita" type="TouchScreenButton" parent="."]
+position = Vector2(265, 444)
+scale = Vector2(1.3, 1.3)
+texture_normal = ExtResource("3_ia54u")
+texture_pressed = ExtResource("4_tjl3u")
+action = "ui_right"
+
+[node name="Pulo" type="TouchScreenButton" parent="."]
+position = Vector2(1027, 527)
+scale = Vector2(1.3, 1.3)
+texture_normal = ExtResource("5_qwhvk")
+texture_pressed = ExtResource("6_0dx5n")
+action = "ui_up"
+
+[connection signal="pressed" from="Descer" to="." method="_on_descer_pressed"]
+[connection signal="released" from="Descer" to="." method="_on_descer_released"]
+[connection signal="pressed" from="Esquerda" to="." method="_on_esquerda_pressed"]
+[connection signal="released" from="Esquerda" to="." method="_on_esquerda_released"]
+[connection signal="pressed" from="Direita" to="." method="_on_direita_pressed"]
+[connection signal="released" from="Direita" to="." method="_on_direita_released"]
+[connection signal="pressed" from="Pulo" to="." method="_on_pulo_pressed"]
+[connection signal="released" from="Pulo" to="." method="_on_pulo_released"]

@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://do8eu7anxsexk"]
+
+[ext_resource type="Script" path="res://GUI/Menus/MenuPrincipal/botãoplay.gd" id="2_kvl8a"]
+[ext_resource type="Texture2D" uid="uid://cadpec6iw5l83" path="res://GUI/Menus/MenuPrincipal/transparentLight14.png" id="2_v6tkc"]
+
+[node name="Menuprincipal" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_kvl8a")
+
+[node name="BotãoPlay" type="TouchScreenButton" parent="."]
+position = Vector2(653, 213)
+scale = Vector2(2.5625, 2.0625)
+texture_normal = ExtResource("2_v6tkc")
+
+[node name="TextEdit" type="TextEdit" parent="."]
+layout_mode = 0
+offset_left = 516.0
+offset_top = 155.0
+offset_right = 953.0
+offset_bottom = 207.0
+text = "APERTA NO JOGAR E POR FAVOR FUNCIONA SOCORRO"
+
+[connection signal="pressed" from="BotãoPlay" to="." method="_on_botão_play_pressed"]

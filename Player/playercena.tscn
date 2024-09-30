@@ -1,0 +1,73 @@
+[gd_scene load_steps=8 format=3 uid="uid://c2b5a8wa3xoja"]
+
+[ext_resource type="Script" path="res://Player/Scripts/movimento.gd" id="1_kiena"]
+[ext_resource type="PackedScene" uid="uid://6r0hwy3ijx5f" path="res://GUI/Controles/controlecanvas.tscn" id="2_21c6s"]
+[ext_resource type="Texture2D" uid="uid://b6jbvc0mkpm7c" path="res://Player/Aya_Placeholder.png" id="2_84xb5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_efjqu"]
+atlas = ExtResource("2_84xb5")
+region = Rect2(10, 0, 85, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r6omj"]
+atlas = ExtResource("2_84xb5")
+region = Rect2(160, 0, 85, 200)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g48ma"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_efjqu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r6omj")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 4.5
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3n7is"]
+size = Vector2(32, 87)
+
+[node name="Player" type="CharacterBody2D"]
+light_mask = 2
+visibility_layer = 2
+z_index = 4
+position = Vector2(159, 114)
+script = ExtResource("1_kiena")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 52.0
+offset_top = -292.0
+offset_right = 1189.0
+offset_bottom = -67.0
+grow_vertical = 0
+
+[node name="ControleTouch" parent="CanvasLayer/HBoxContainer" instance=ExtResource("2_21c6s")]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(3, 12)
+scale = Vector2(0.5, 0.485)
+sprite_frames = SubResource("SpriteFrames_g48ma")
+animation = &"Idle"
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, 11.5)
+shape = SubResource("RectangleShape2D_3n7is")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-49, -30)
+zoom = Vector2(1.7, 1.7)
+position_smoothing_speed = 90.0
+drag_horizontal_enabled = true
+drag_horizontal_offset = 0.53
+
+[connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]
